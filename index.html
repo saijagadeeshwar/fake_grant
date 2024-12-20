@@ -65,6 +65,44 @@
         .cta-button:hover {
             background-color: #e65c00;
         }
+        .form-container {
+            display: none;
+            margin: 30px auto;
+            max-width: 600px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: left;
+        }
+        .form-container h3 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-container label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-container input, .form-container button, .form-container select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+        .form-container button {
+            background-color: #0066cc;
+            color: white;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background-color: #005bb5;
+        }
+        .card-details {
+            display: none;
+        }
         footer {
             background-color: #333;
             color: #fff;
@@ -84,20 +122,55 @@
             Hurry! Only a limited number of grants are left. Fill out the form now to secure your funds!
         </div>
 
-        <button class="cta-button">Apply Now</button>
+        <button class="cta-button" onclick="showForm()">Apply Now</button>
+
+        <div class="form-container" id="applicationForm">
+            <h3>Application Form</h3>
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your full name">
+
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email">
+
+            <label for="bank">Bank Account Number</label>
+            <input type="text" id="bank" name="bank" placeholder="Enter your bank account number">
+
+            <label for="paymentMethod">Select Payment Method</label>
+            <select id="paymentMethod" name="paymentMethod" onchange="toggleCardDetails(this.value)">
+                <option value="googlePay">Google Pay</option>
+                <option value="zelle">Zelle</option>
+                <option value="creditCard">Add Credit/Debit Card</option>
+            </select>
+
+            <div class="card-details" id="cardDetails">
+                <label for="cardNumber">Card Number</label>
+                <input type="text" id="cardNumber" name="cardNumber" placeholder="Enter your card number">
+
+                <label for="cardExpiry">Expiry Date</label>
+                <input type="text" id="cardExpiry" name="cardExpiry" placeholder="MM/YY">
+
+                <label for="cardCVC">CVC</label>
+                <input type="text" id="cardCVC" name="cardCVC" placeholder="Enter your card CVC">
+            </div>
+
+            <button type="submit">Submit Application</button>
+        </div>
 
         <div class="fake-testimonials">
             <h3>See What Others Are Saying:</h3>
             <div class="testimonial">
-                <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="User1">
+                <img src="https://via.placeholder.com/100" alt="User1">
                 <p>"I clicked the link and got $10,000 instantly! Thank you, Govvernnment!"<br><strong>- Sarah T.</strong></p>
             </div>
             <div class="testimonial">
-                <img src="https://www.w3schools.com/howto/img_avatar.png" alt="User2">
+                <img src="https://via.placeholder.com/100" alt="User2">
                 <p>"This grant changed my life. It was so easy to apply!"<br><strong>- Mike W.</strong></p>
             </div>
             <div class="testimonial">
-                <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="User3">
+                <img src="https://via.placeholder.com/100" alt="User3">
                 <p>"I got my funds in just one day. Amazing opportunity!"<br><strong>- Jessica R.</strong></p>
             </div>
         </div>
@@ -105,5 +178,20 @@
     <footer>
         <p>Copyright © 2024 FreeGovGrant. Not an official government website.</p>
     </footer>
+
+    <script>
+        function showForm() {
+            document.getElementById('applicationForm').style.display = 'block';
+        }
+
+        function toggleCardDetails(paymentMethod) {
+            const cardDetails = document.getElementById('cardDetails');
+            if (paymentMethod === 'creditCard') {
+                cardDetails.style.display = 'block';
+            } else {
+                cardDetails.style.display = 'none';
+            }
+        }
+    </script>
 </body>
 </html>
